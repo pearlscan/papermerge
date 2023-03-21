@@ -2,7 +2,7 @@
 import os
 from os.path import expanduser
 from pathlib import Path
-from mglib.utils import try_load_config
+from mglib.utils import try_load_config, SAFE_EXTENSIONS
 
 DEFAULT_CONFIG_PLACES = [
     "/etc/papermerge.conf.py",
@@ -47,6 +47,14 @@ MEDIA_URL = cfg_papermerge.get(
     "MEDIA_URL",
     "/media/"
 )
+
+# Add DICOM formats to SAFE_EXTENSIONS so that documents can
+# be deleted.
+SAFE_EXTENSIONS.extend([
+    '',
+    '.dcm',
+    '.dicom'
+])
 
 # This is where Papermerge will look for PDFs to index
 PAPERMERGE_IMPORTER_DIR = cfg_papermerge.get(
