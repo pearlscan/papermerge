@@ -122,6 +122,7 @@ PAPERMERGE_METADATA_NUMERIC_FORMATS = [
 ]
 
 PAPERMERGE_MIMETYPES = [
+    'application/dicom',
     'application/octet-stream',
     'application/pdf',
     'image/png',
@@ -287,17 +288,17 @@ DATABASES = {
     }
 }
 
-if cfg_papermerge.get("DBTYPE", False) in (
-    "pg", "postgre", "postgres", "postgresql"
+if cfg_papermerge.get('DBTYPE', False) in (
+    'pg', 'postgre', 'postgres', 'postgresql'
 ):
-    DATABASES["default"] = {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": cfg_papermerge.get("DBNAME", "papermerge"),
-        "USER": cfg_papermerge.get("DBUSER", "papermerge"),
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': cfg_papermerge.get('DBHOST', 'localhost'),
+        'PORT': cfg_papermerge.get('DBPORT', 5432),
+        'NAME': cfg_papermerge.get('DBNAME', 'papermerge'),
+        'USER': cfg_papermerge.get('DBUSER', 'papermerge'),
+        'PASSWORD': cfg_papermerge.get('DBPASS', '')
     }
-    DATABASES["default"]["PASSWORD"] = cfg_papermerge.get("DBPASS", "")
-    DATABASES["default"]["HOST"] = cfg_papermerge.get("DBHOST", "localhost")
-    DATABASES["default"]["PORT"] = cfg_papermerge.get("DBPORT", 5432)
 elif cfg_papermerge.get("DBTYPE", False) in (
     "my", "mysql", "maria", "mariadb"
 ):
@@ -326,7 +327,7 @@ LANGUAGES = [
     ('en', 'English'),
     ('fr', 'Français'),
 ]
-TIME_ZONE = 'Europe/Berlin'
+TIME_ZONE = 'Europe/London'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
